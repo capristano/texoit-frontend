@@ -23,4 +23,4 @@ Basta executar o seguinte comando na pasta raíz do projeto.
 ng serve
 ```
 
-Agora a aplicação estará executando localmente e pode ser acessada via browser no endereço [a link](http://localhost:4200)
+Agora a aplicação estará executando localmente e pode ser acessada via browser no endereço [http://localhost:4200](http://localhost:4200)
