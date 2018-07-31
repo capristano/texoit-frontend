@@ -1,0 +1,48 @@
+
+/* esconde os campos da tabela */
+@media only all {
+    th.ui-p-4,
+    td.ui-p-4,
+    th.ui-p-3,
+    td.ui-p-3,
+    th.ui-p-2,
+    td.ui-p-2,
+    th.ui-p-1,
+    td.ui-p-1 {
+        display: none;
+    }
+
+}
+
+/* mostra os campos da tabela com a resolução > 320px */
+@media screen and (min-width: 20em) {
+    th.ui-p-1,
+    td.ui-p-1 {
+        display: table-cell;
+    }
+}
+
+/* mostra os campos da tabela com a resolução > 480px */
+@media screen and (min-width: 30em) {
+    th.ui-p-2,
+    td.ui-p-2 {
+        display: table-cell;
+    }
+}
+
+/* mostra os campos da tabela com a resolução > 640px */
+@media screen and (min-width: 40em) {
+    th.ui-p-3,
+    td.ui-p-3 {
+        display: table-cell;
+    }
+}
+
+/* mostra os campos da tabela com a resolução > 800px */
+@media screen and (min-width: 50em) {
+    th.ui-p-4,
+    td.ui-p-4 {
+        display: table-cell;
+    }
+}
+

@@ -1,0 +1,98 @@
+<p-confirmDialog icon="pi pi-exclamation-triangle" width="425"></p-confirmDialog>
+<div class="ui-fluid">
+  <p-messages [(value)]="msgs"></p-messages>
+</div>
+<form [formGroup]="form" (ngSubmit)="onSubmit(form.value)">
+  <div class="ui-g">
+    <div class="ui-g-12">
+      <div>Nome:</div>
+      <div class="ui-fluid">
+        <input type="text" maxlength="50" pInputText [pKeyFilter]="blockSpecialLE" formControlName="nome">  
+      </div>
+      <div class="ui-fluid ui-messages-error" *ngIf="!form.controls['nome'].valid">
+          <i class="fa fa-close"></i>
+          Campo obrigatório
+      </div>   
+    </div>
+
+    <div class="ui-g-12">
+      <div>Unidade de Medida:</div>
+      <div class="ui-fluid">
+        <p-dropdown [options]="listUnidadeMedida" formControlName="unidade_medida" [style]="{'width':'100%'}" (onChange)="onChangeUnidade($event.value)"></p-dropdown>
+      </div>
+      <div class="ui-fluid ui-messages-error" *ngIf="!form.controls['unidade_medida'].valid">
+          <i class="fa fa-close"></i>
+          Campo obrigatório
+      </div> 
+    </div>
+
+    <div class="ui-g-12">
+      <div>Quantidade:</div>
+      <div class="ui-fluid">        
+        <div class="ui-inputgroup">
+          <input type="text" pInputText [pKeyFilter]="blockSpecialNV" formControlName="quantidade" (keyup)="onChangeQuantidade()" [attr.disabled]="unidadeMedidaUtilizada == '' ? '' : null">
+          <span class="ui-inputgroup-addon">{{unidadeMedidaUtilizada}}</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="ui-g-12">
+      <div>Preço:</div>
+      <div class="ui-fluid">
+        <div class="ui-inputgroup">
+          <span class="ui-inputgroup-addon">R$</span>
+          <input type="text" pInputText [pKeyFilter]="blockSpecialNV" formControlName="preco" placeholder="Digite no formato 0,00" dir='rtl' class="preco" (keyup)="precoMask($event)">
+        </div>
+      </div>
+      <div class="ui-fluid ui-messages-error" *ngIf="!form.controls['preco'].valid">
+        <i class="fa fa-close"></i>
+        Campo obrigatório
+      </div>      
+    </div>
+
+    <div class="ui-g-12">
+      <div>Perecível:</div>
+      <div class="ui-fluid">
+        <p-inputSwitch onLabel="Sim" offLabel="Não" (onChange)="onChangePerecivel($event)" formControlName="perecivel"></p-inputSwitch>
+      </div>
+    </div>
+
+    <div class="ui-g-12">
+      <div>Data de Validade:</div>
+      <div class="ui-fluid">
+        <p-calendar formControlName="data_validade" dateFormat="dd/mm/yy" [readonlyInput]="true" showButtonBar="true" [locale]="pt" (onSelect)="onSelectDataValidade()"></p-calendar>
+      </div>
+      <div class="ui-fluid ui-messages-error" *ngIf="!form.controls['data_validade'].valid">
+        <i class="fa fa-close"></i>
+        Campo obrigatório
+      </div>    
+      <div class="ui-fluid ui-messages-warn" *ngIf="produtoVencido">
+        <i class="fa fa-exclamation-triangle"></i>
+        Produto vencido
+      </div>
+    </div>
+
+    <div class="ui-g-12">
+      <div>Data de Fabricação:</div>
+      <div class="ui-fluid">
+        <p-calendar formControlName="data_fabricacao" dateFormat="dd/mm/yy" [readonlyInput]="true" showButtonBar="true" [locale]="pt" (onSelect)="onSelectDataFabricacao()"></p-calendar>
+      </div>
+      <div class="ui-fluid ui-messages-error" *ngIf="!form.controls['data_fabricacao'].valid && !dataFabricacaoInvalida">
+        <i class="fa fa-close"></i>
+        Campo obrigatório
+      </div>
+      <div class="ui-fluid ui-messages-error" *ngIf="dataFabricacaoInvalida">
+        <i class="fa fa-close"></i>
+        Não pode ser superior a data de validade
+      </div>  
+    </div>
+
+    <div class="ui-g-12">
+      <div class="ui-toolbar-group-left">
+        <button pButton type="submit" label="Salvar" icon="fa fa-fw fa-save" class="ui-button-success" [disabled]="!form.valid"></button>
+        <button pButton type="button" label="Cancelar" icon="fa fa-fw fa-ban" class="ui-button-danger" (click)="cancel()"></button>
+      </div>
+    </div>
+
+  </div>
+</form>

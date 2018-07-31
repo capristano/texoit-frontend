@@ -1,0 +1,12 @@
+<p-panel styleClass="customTitleBar">
+
+    <p-header>
+      <div class="ui-toolbar-group-left">
+        <p-menu #menu popup="popup" [model]="items"></p-menu>
+        <button type="button" pButton icon="fa fa-fw fa-list" (click)="menu.toggle($event)"></button>
+      </div>
+    </p-header>
+
+    <router-outlet></router-outlet>
+
+</p-panel>

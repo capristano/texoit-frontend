@@ -1,0 +1,34 @@
+/* define o tamanho horizontal do campo em 100% */
+input {
+    width: 100%; 
+}
+
+/* define o tamnho do que estiver utilizando a classe por padrão em 40% */
+.ui-fluid {
+	width: 40%;
+}
+
+/* define o tamnho do que estiver utilizando a classe em 70% quando a resolução for menor que 1025px */
+@media screen and (max-width: 1025px) {
+    .ui-fluid {
+        width: 70%;
+    }
+}
+
+/* define o tamnho do que estiver utilizando a classe em 100% quando a resolução for menor que 740px */
+@media screen and (max-width: 740px) {
+    .ui-fluid {
+        width: 100%;
+    }
+}
+
+/* aplica margem no botão de salvar */
+.ui-button-success {
+    margin-right:0.2em;
+}
+
+/* torna o blinking cursor invisivel, para não haver confusão com a definição de escrita do campo rtl */
+.preco {
+    color: transparent;
+    text-shadow: 0 0 0 #000000;
+}

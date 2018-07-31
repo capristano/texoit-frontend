@@ -1,0 +1,32 @@
+<p-confirmDialog icon="pi pi-exclamation-triangle" width="425"></p-confirmDialog>
+<p-messages [(value)]="msgs"></p-messages>
+<p-table [value]="products" [paginator]="true" [rows]="10">
+  <ng-template pTemplate="header" *ngIf="thereIsProduct">
+    <tr>
+      <th style="width:10%"><button type="button" pButton icon="fa fa-plus" (click)="add()"></button></th>    
+      <th style="width:35%">Nome</th>
+      <th style="width:20%" class="ui-p-2" >Quantidade</th>
+      <th style="width:20%" class="ui-p-3">Preço</th>
+      <th style="width:15%" class="ui-p-4">Data de Validade</th>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="body" let-product>
+    <tr>
+      <td align="center">
+        <button type="button" pButton icon="fa fa-edit" (click)="change(product.id)" styleClass="tab-button" style="margin-right:1px; margin-bottom: 2px;"></button>
+        <button type="button" pButton icon="fa fa-trash" (click)="delete(product.id)" style="margin-left:1px;"></button>
+      </td>
+      <td>{{product.nome}}</td>
+      <td class="ui-p-2">{{product.quantidade}}</td>
+      <td class="ui-p-3">{{product.preco}}</td>
+      <td class="ui-p-4">{{product.data_validade_frt}}</td>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="emptymessage">
+    <tr>
+      <td [attr.colspan]="5" align="center">
+        Nenhum registro encontrado
+      </td>
+    </tr>
+  </ng-template>
+</p-table>
